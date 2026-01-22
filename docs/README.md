@@ -3,24 +3,25 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and title
-repository-name: eYY-4yp-project-template
-title:
+repository-name: e20-4yp-Synthetic-Cardiac-MRI-Image-Generation-using-Deep-Generative-Models
+title: Synthetic Cardiac MRI Image Generation using Deep Generative Models
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Synthetic Cardiac MRI Image Generation using Deep Generative Models
 
 #### Team
 
-- eNumber, Name, [email](mailto:name@email.com)
-- eNumber, Name, [email](mailto:name@email.com)
-- eNumber, Name, [email](mailto:name@email.com)
+- E/20/211, Kumarasinghe K.W.I.T, [email](mailto:e20211@eng.pdn.ac.lk)
+- E/20/197, Kavya A.H.D, [email](mailto:e20197@eng.pdn.ac.lk)
+- E/20/093, Edirisooriya D.M.B, [email](mailto:e20093@eng.pdn.ac.lk)
 
 #### Supervisors
 
-- Name, [email](mailto:name@eng.pdn.ac.lk)
-- Name, [email](mailto:name@eng.pdn.ac.lk)
+- Dr. Isuru  Nawinne, [email](mailto:isurunawinne@eng.pdn.ac.lk)
+- Prof. Roshan G. Ragel, [email](mailto:roshanr@eng.pdn.ac.lk)
+- Dr. Vajira Thambawita, [email](mailto:vajira@simula.no)
 
 #### Table of content
 
@@ -43,7 +44,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 
 ## Abstract
-
+Synthetic cardiac MRI (CMRI) generation has emerged as a promising strategy to overcome the scarcity of annotated medical imaging data. Recent advances in GANs, VAEs, diffusion probabilistic models, and flow-matching techniques aim to generate anatomically accurate images while addressing challenges such as limited labeled datasets, vendor variability, and risks of privacy leakage through model memorization. Mask-conditioned generation improves structural fidelity by guiding synthesis with segmentation maps, while diffusion and flow-matching models offer strong boundary preservation and efficient deterministic transformations. Cross-domain generalization is further supported through vendor-style conditioning and preprocessing steps like intensity normalization. To ensure privacy, studies increasingly incorporate membership inference attacks, nearest-neighbor analyses, and differential privacy mechanisms. Utility evaluations commonly measure downstream segmentation performance, with evidence showing that anatomically constrained synthetic data can enhance accuracy and robustness across multi-vendor settings. This review aims to compare existing CMRI generation approaches through the lenses of fidelity, utility, and privacy, highlighting current limitations and the need for integrated, evaluation-driven frameworks for reliable clinical workflows.
 ## Related works
 
 ## Methodology
@@ -68,8 +69,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 [//]: # ( NOTE: EDIT THIS LINKS WITH YOUR REPO DETAILS )
 
-- [Project Repository](https://github.com/cepdnaclk/repository-name)
-- [Project Page](https://cepdnaclk.github.io/repository-name)
+- [Project Repository](https://github.com/cepdnaclk/e20-4yp-Synthetic-Cardiac-MRI-Image-Generation-using-Deep-Generative-Models)
+- [Project Page](https://cepdnaclk.github.io/e20-4yp-Synthetic-Cardiac-MRI-Image-Generation-using-Deep-Generative-Models)
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
