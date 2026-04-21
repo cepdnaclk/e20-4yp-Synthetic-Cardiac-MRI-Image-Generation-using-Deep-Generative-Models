@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Synthetic Cardiac MRI Generation - Final Year Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/styles/styles.css"/>
+</head>
+<body>
+
+<!-- NAV  -->
+<nav>
+  <a class="nav-logo" href="#"></a>
+  <div class="nav-links">
+    <a href="#abstract">Abstract</a>
+    <a href="#methodology">Pipeline</a>
+    <a href="#samples">Samples</a>
+    <a href="#models">Models</a>
+    <a href="#results">Results</a>
+    <a href="#team">Team</a>
+    <a href="#links">Links</a>
+  </div>
+</nav>
+
+<!-- HERO  -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Final Year Project · Medical Imaging · 2026</div>
+    <h1 class="hero-title">
+      Balancing <em>Fidelity,</em><br/>
+      Utility &amp; Privacy in<br/>
+      Synthetic Cardiac MRI
+    </h1>
+    <p class="hero-sub">
+      A comparative study benchmarking DDPM, Latent Diffusion Models, and Flow Matching
+      for synthetic cardiac MRI generation - quantifying trade-offs between image quality,
+      segmentation utility, and patient privacy.
+    </p>
+    <div class="hero-badges">
+      <span class="badge highlight">DDPM</span>
+      <span class="badge highlight">Latent Diffusion</span>
+      <span class="badge highlight">Flow Matching</span>
+      <span class="badge">Cardiac MRI</span>
+      <span class="badge">Synthetic Data</span>
+      <span class="badge">Privacy Preservation</span>
+      <span class="badge">Segmentation Utility</span>
+    </div>
+    <div class="ecg-wrap">
+      <svg class="ecg-svg" viewBox="0 0 500 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="ecg-line" d="M0,30 L40,30 L50,30 L60,15 L70,45 L80,5 L90,55 L100,30
+          L110,30 L150,30 L160,30 L170,18 L180,42 L190,8 L200,52 L210,30 L220,30
+          L260,30 L270,30 L280,18 L290,42 L300,8 L310,52 L320,30 L330,30
+          L370,30 L380,30 L390,18 L400,42 L410,8 L420,52 L430,30 L440,30 L500,30"/>
+      </svg>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#abstract">Read Abstract</a>
+      <a class="btn btn-outline" href="#results">View Results</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABSTRACT  -->
+<section id="abstract">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">01 - Overview</div>
+      <h2 class="section-title">Research Abstract</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="abstract-card reveal">
+      <p class="abstract-text">
+        Deep learning in cardiac MRI (CMR) is fundamentally constrained by both
+        <strong>data scarcity</strong> and <strong>privacy regulations</strong>. This study
+        systematically benchmarks three generative architectures:
+        <span class="highlight-inline">Denoising Diffusion Probabilistic Models (DDPM)</span>,
+        <span class="highlight-inline">Latent Diffusion Models (LDM)</span>, and
+        <span class="highlight-inline">Flow Matching (FM)</span>
+        for synthetic CMR generation. Utilizing a <strong>two-stage pipeline</strong> where
+        anatomical masks condition image synthesis, we evaluate generated data across three
+        critical axes: <strong>fidelity</strong>, <strong>utility</strong>, and <strong>privacy</strong>.
+      </p>
+      <br/>
+      <p class="abstract-text">
+        Our results show that diffusion-based models, particularly
+        <span class="highlight-inline">DDPM</span>, provide the most effective balance between
+        downstream segmentation utility, image fidelity, and privacy preservation under
+        limited-data conditions, while <span class="highlight-inline">FM</span> demonstrates
+        promising privacy characteristics with slightly lower task-level performance. These
+        findings quantify the trade-offs between cross-domain generalization and patient
+        confidentiality, establishing a framework for
+        <strong>safe and effective synthetic data augmentation</strong> in medical imaging.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND  -->
+<div class="stats-band">
+  <div class="stat-item reveal">
+    <span class="stat-num">3</span>
+    <span class="stat-label">Generative Architectures Benchmarked</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">3</span>
+    <span class="stat-label">Evaluation Axes: Fidelity · Utility · Privacy</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">2</span>
+    <span class="stat-label">Stage Synthesis Pipeline</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">1</span>
+    <span class="stat-label">Unified Evaluation Framework</span>
+  </div>
+</div>
+
+<!-- PIPELINE  -->
+<section id="methodology">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">02 - Approach</div>
+      <h2 class="section-title">System Pipeline</h2>
+      <div class="section-divider"></div>
+    </div>
+    <p class="reveal" style="color:var(--text-secondary);max-width:720px;margin-bottom:3rem;line-height:1.8;">
+      A two-phase pipeline: generative models produce synthetic CMR images from noise
+      conditioned on anatomical masks, then outputs are rigorously evaluated across fidelity,
+      utility, and privacy. Click each model tab to explore its architecture.
+    </p>
+
+    <div class="pv-wrap reveal">
+
+      <!-- Phase 1 header -->
+      <div class="pv-phase-hdr">
+        <span class="pv-phase-tag gen-tag">Phase 1</span>
+        <span class="pv-phase-title">Generation</span>
+        <div class="pv-phase-line"></div>
+      </div>
+
+      <div class="pv-gen-row">
+
+        <!-- Inputs -->
+        <div class="pv-inputs-col">
+          <div class="pv-input-card">
+            <div class="pv-input-icon">
+              <img src="assets/images/real_mask.png" alt="Real Mask" height="56" width="56"  style="border-radius: 3px;">
+            </div>
+            <div class="pv-input-label">Real Mask</div>
+          </div>
+          <div class="pv-input-sep">OR</div>
+          <div class="pv-input-card">
+            <div class="pv-input-icon">
+              <img src="assets/images/noise.jpg" alt="Gaussian Noise" width="56" height="56"  style="border-radius: 3px;">
+            </div>
+            <div class="pv-input-label">Gaussian Noise</div>
+          </div>
+        </div>
+
+        <div class="pv-arrow-main">→</div>
+
+        <!-- Model area with tabs -->
+        <div class="pv-model-area">
+          <div class="pv-tabs">
+            <button class="pv-tab pv-active" onclick="switchPvTab('ddpm',this)">DDPM</button>
+            <button class="pv-tab" onclick="switchPvTab('ldm',this)">LDM</button>
+            <button class="pv-tab" onclick="switchPvTab('fm',this)">FM</button>
+          </div>
+
+          <!-- DDPM arch -->
+          <div class="pv-arch" id="arch-ddpm">
+            <div class="pv-arch-label">Denoising Diffusion Probabilistic Model · Mask-Conditioned UNet</div>
+            <div class="pv-arch-flow">
+              <div class="pv-blk pv-noise">x<sub>T</sub><br/><small>Noise</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-unet">↓ DS<br/><small>UNet</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-unet">Mid<br/><small>Block</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-unet">↑ US<br/><small>UNet</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-out">x̂<sub>0</sub><br/><small>×T steps</small></div>
+            </div>
+            <div class="pv-cond-row">
+              <div class="pv-cond-pill c-mask">Mask Conditioning</div>
+              <span class="pv-cond-note">cross-attention injected at each diffusion timestep</span>
+            </div>
+          </div>
+
+          <!-- LDM arch -->
+          <div class="pv-arch pv-hidden" id="arch-ldm">
+            <div class="pv-arch-label">Latent Diffusion Model · VAE Encoder–Decoder + Latent UNet</div>
+            <div class="pv-arch-flow">
+              <div class="pv-blk pv-noise">z<sub>T</sub><br/><small>Noise</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-enc">VAE<br/><small>Encoder ↓</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-unet">Latent<br/><small>UNet</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-dec">VAE<br/><small>Decoder ↑</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-out">x̂<sub>0</sub><br/><small>pixel space</small></div>
+            </div>
+            <div class="pv-cond-row">
+              <div class="pv-cond-pill c-mask">Mask Conditioning</div>
+              <span class="pv-cond-note">cross-attention in compressed latent space · reduced compute</span>
+            </div>
+          </div>
+
+          <!-- FM arch -->
+          <div class="pv-arch pv-hidden" id="arch-fm">
+            <div class="pv-arch-label">Flow Matching · ODE Solver + Velocity UNet with ControlNet</div>
+            <div class="pv-arch-flow">
+              <div class="pv-blk pv-noise">x<sub>0</sub><br/><small>Noise</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-ode">ODE<br/><small>Solver</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-vel">Velocity<br/><small>UNet</small></div>
+              <span class="pv-arr">→</span>
+              <div class="pv-blk pv-out">x<sub>1</sub><br/><small>data space</small></div>
+            </div>
+            <div class="pv-cond-row">
+              <div class="pv-cond-pill c-ctrl">ControlNet</div>
+              <div class="pv-cond-pill c-emb">Mask Embeddings</div>
+              <div class="pv-cond-pill c-ms">MultiScale Residuals</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pv-arrow-main">→</div>
+
+        <!-- Output -->
+        <div class="pv-output-col">
+          <div class="pv-output-card">
+              <img src="assets/images/generated.png" alt="Generated CMR" height="56" width="56"  style="border-radius: 3px;">
+            <div class="pv-output-label">Synthetic CMR</div>
+          </div>
+        </div>
+
+      </div><!-- /pv-gen-row -->
+
+      <!-- Connector to eval -->
+      <div class="pv-connector-col">
+        <div class="pv-vert-line"></div>
+        <div class="pv-vert-arrow">↓</div>
+      </div>
+
+      <!-- Phase 2 header -->
+      <div class="pv-phase-hdr">
+        <span class="pv-phase-tag eval-tag">Phase 2</span>
+        <span class="pv-phase-title">Evaluation</span>
+        <div class="pv-phase-line"></div>
+      </div>
+
+      <div class="pv-eval-grid">
+
+        <div class="pv-eval-card">
+          <div class="pv-eval-icon-wrap dist-icon">◑</div>
+          <div class="pv-eval-title">Distribution</div>
+          <div class="pv-eval-sub">Based Evaluation</div>
+          <div class="pv-chips">
+            <span class="pv-chip">FID</span><span class="pv-chip">KID</span>
+          </div>
+          <p class="pv-eval-desc">Statistical divergence between real and synthetic image distributions at the feature level</p>
+        </div>
+
+        <div class="pv-eval-card">
+          <div class="pv-eval-icon-wrap fid-icon">◎</div>
+          <div class="pv-eval-title">Fidelity</div>
+          <div class="pv-eval-sub">Perceptual &amp; Structural Quality</div>
+          <div class="pv-chips">
+            <span class="pv-chip">PSNR</span><span class="pv-chip">SSIM</span>
+            <span class="pv-chip">MS-SSIM</span><span class="pv-chip">LPIPS</span>
+            <span class="pv-chip">FID</span><span class="pv-chip">KID</span>
+          </div>
+          <p class="pv-eval-desc">Full-reference &amp; no-reference metrics for pixel, structural, and perceptual quality</p>
+        </div>
+
+        <div class="pv-eval-card">
+          <div class="pv-eval-icon-wrap util-icon">◈</div>
+          <div class="pv-eval-title">Utility</div>
+          <div class="pv-eval-sub">Downstream Segmentation Task</div>
+          <div class="pv-util-flow">
+            <div class="pv-util-row">
+              <div class="pv-util-box real-box">Real<br/>Images+Masks</div>
+              <span class="pv-sarr">→</span>
+              <div class="pv-util-box seg-box">Seg<br/>Model</div>
+              <span class="pv-sarr">←</span>
+              <div class="pv-util-box syn-box">Synthetic<br/>+Masks</div>
+            </div>
+            <div class="pv-util-note">↓ evaluated on real test dataset</div>
+          </div>
+        </div>
+
+        <div class="pv-eval-card">
+          <div class="pv-eval-icon-wrap priv-icon">◻</div>
+          <div class="pv-eval-title">Privacy</div>
+          <div class="pv-eval-sub">Patient Confidentiality</div>
+          <div class="pv-priv-sections">
+            <div>
+              <div class="pv-priv-lbl">Nearest-Neighbour Analysis</div>
+              <div class="pv-chips small">
+                <span class="pv-chip">L2</span><span class="pv-chip">SSIM</span>
+                <span class="pv-chip">LPIPS</span><span class="pv-chip">NNDR</span>
+              </div>
+            </div>
+            <div class="pv-priv-sep"></div>
+            <div>
+              <div class="pv-priv-lbl">Membership Inference Attack</div>
+              <div class="pv-chips small">
+                <span class="pv-chip">FCRE</span><span class="pv-chip">Binary Clf</span>
+                <span class="pv-chip">AUC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /pv-eval-grid -->
+    </div><!-- /pv-wrap -->
+  </div>
+</section>
+
+<!-- SYNTHETIC SAMPLES -->
+<section id="samples">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">03 - Generated Output</div>
+      <h2 class="section-title">Synthetic CMR Images</h2>
+      <div class="section-divider"></div>
+    </div>
+    <p class="reveal" style="color:var(--text-secondary);max-width:700px;margin-bottom:2.5rem;line-height:1.8;">
+      Representative synthetic cardiac MRI images generated by each model. Select a model
+      to compare visual quality, anatomical structure, and texture characteristics.
+    </p>
+    <div class="gallery-model-tabs reveal">
+      <button class="gal-tab gal-active" onclick="switchGal('ddpm',this)">DDPM</button>
+      <button class="gal-tab" onclick="switchGal('ldm',this)">LDM</button>
+      <button class="gal-tab" onclick="switchGal('fm',this)">Flow Matching</button>
+    </div>
+
+    <!-- ── DDPM panel ────────────────────── -->
+    <!--
+      HOW TO ADD REAL IMAGES:
+      Replace each <svg>…</svg> placeholder inside .gallery-item with:
+        <img src="images/ddpm/sample_01.png" alt="DDPM generated CMR sample 1"/>
+      Make sure the image files are placed in an images/ folder next to index.html.
+      Supported formats: PNG, JPG, WebP.
+    -->
+    <div class="gallery-panel gal-show reveal" id="gal-ddpm">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="80" cy="80" rx="70" ry="65" fill="#0d1a28"/><ellipse cx="80" cy="80" rx="56" ry="52" fill="#162535"/><ellipse cx="80" cy="80" rx="42" ry="38" fill="#1e3548"/><ellipse cx="80" cy="80" rx="30" ry="26" fill="#2a4a62"/><ellipse cx="82" cy="84" rx="18" ry="16" fill="#06101a"/><ellipse cx="56" cy="64" rx="14" ry="17" fill="#06101a"/><ellipse cx="80" cy="80" rx="30" ry="26" fill="none" stroke="#3a7090" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 01</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030a12"/><ellipse cx="78" cy="82" rx="68" ry="63" fill="#0c1825"/><ellipse cx="78" cy="82" rx="54" ry="50" fill="#152233"/><ellipse cx="78" cy="82" rx="40" ry="36" fill="#1c3245"/><ellipse cx="78" cy="82" rx="28" ry="25" fill="#284558"/><ellipse cx="80" cy="86" rx="17" ry="15" fill="#05090f"/><ellipse cx="54" cy="66" rx="13" ry="16" fill="#05090f"/><ellipse cx="78" cy="82" rx="28" ry="25" fill="none" stroke="#3a6a80" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 02</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#02080e"/><ellipse cx="82" cy="78" rx="69" ry="64" fill="#0e1c2a"/><ellipse cx="82" cy="78" rx="55" ry="51" fill="#172636"/><ellipse cx="82" cy="78" rx="41" ry="37" fill="#203648"/><ellipse cx="82" cy="78" rx="29" ry="25" fill="#2c4c60"/><ellipse cx="84" cy="82" rx="17" ry="15" fill="#06101c"/><ellipse cx="58" cy="62" rx="13" ry="16" fill="#06101c"/><ellipse cx="82" cy="78" rx="29" ry="25" fill="none" stroke="#3c7592" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 03</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020912"/><ellipse cx="79" cy="81" rx="67" ry="62" fill="#0d1926"/><ellipse cx="79" cy="81" rx="53" ry="49" fill="#162332"/><ellipse cx="79" cy="81" rx="39" ry="36" fill="#1e3244"/><ellipse cx="79" cy="81" rx="28" ry="24" fill="#2a4560"/><ellipse cx="81" cy="85" rx="16" ry="14" fill="#050e18"/><ellipse cx="55" cy="65" rx="12" ry="15" fill="#050e18"/><ellipse cx="79" cy="81" rx="28" ry="24" fill="none" stroke="#3a6e8a" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 04</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030b14"/><ellipse cx="81" cy="79" rx="70" ry="65" fill="#0f1d2c"/><ellipse cx="81" cy="79" rx="56" ry="52" fill="#182838"/><ellipse cx="81" cy="79" rx="42" ry="38" fill="#21384a"/><ellipse cx="81" cy="79" rx="30" ry="26" fill="#2d4e64"/><ellipse cx="83" cy="83" rx="18" ry="16" fill="#061218"/><ellipse cx="57" cy="63" rx="14" ry="17" fill="#061218"/><ellipse cx="81" cy="79" rx="30" ry="26" fill="none" stroke="#3e7296" stroke-width="1.8"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 05</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020a14"/><ellipse cx="80" cy="80" rx="68" ry="63" fill="#0e1c28"/><ellipse cx="80" cy="80" rx="54" ry="50" fill="#172534"/><ellipse cx="80" cy="80" rx="40" ry="37" fill="#1f3446"/><ellipse cx="80" cy="80" rx="29" ry="25" fill="#2b4a5e"/><ellipse cx="82" cy="84" rx="17" ry="15" fill="#060f1a"/><ellipse cx="56" cy="64" rx="13" ry="16" fill="#060f1a"/><ellipse cx="80" cy="80" rx="29" ry="25" fill="none" stroke="#3b7090" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 06</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030912"/><ellipse cx="77" cy="83" rx="66" ry="62" fill="#0d1a27"/><ellipse cx="77" cy="83" rx="52" ry="48" fill="#152231"/><ellipse cx="77" cy="83" rx="38" ry="35" fill="#1d3042"/><ellipse cx="77" cy="83" rx="27" ry="23" fill="#29445c"/><ellipse cx="79" cy="87" rx="16" ry="14" fill="#050d16"/><ellipse cx="53" cy="67" rx="12" ry="15" fill="#050d16"/><ellipse cx="77" cy="83" rx="27" ry="23" fill="none" stroke="#386c88" stroke-width="1.5"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 07</div>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="83" cy="77" rx="69" ry="64" fill="#0e1c29"/><ellipse cx="83" cy="77" rx="55" ry="51" fill="#172535"/><ellipse cx="83" cy="77" rx="41" ry="37" fill="#1f3447"/><ellipse cx="83" cy="77" rx="29" ry="25" fill="#2b4b60"/><ellipse cx="85" cy="81" rx="17" ry="15" fill="#06101b"/><ellipse cx="59" cy="61" rx="13" ry="16" fill="#06101b"/><ellipse cx="83" cy="77" rx="29" ry="25" fill="none" stroke="#3c7192" stroke-width="1.6"/></svg>
+          <div class="gallery-item-label">DDPM · Sample 08</div>
+        </div>
+      </div>
+      <div class="gallery-upload-note">
+        <strong>To add real images:</strong> replace each &lt;svg&gt; with
+        <code>&lt;img src="images/ddpm/sample_01.png" alt="…"/&gt;</code>
+        — see the HTML comment above this panel for full instructions.
+      </div>
+    </div>
+
+    <!-- ── LDM panel ─────────────────────── -->
+    <div class="gallery-panel" id="gal-ldm">
+      <div class="gallery-grid">
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="80" cy="80" rx="72" ry="67" fill="#0c1a28" opacity="0.95"/><ellipse cx="80" cy="80" rx="58" ry="54" fill="#142230"/><ellipse cx="80" cy="80" rx="44" ry="40" fill="#1c3040"/><ellipse cx="80" cy="80" rx="32" ry="28" fill="#264460"/><ellipse cx="82" cy="84" rx="20" ry="18" fill="#050d18"/><ellipse cx="54" cy="62" rx="15" ry="18" fill="#050d18"/><ellipse cx="80" cy="80" rx="32" ry="28" fill="none" stroke="#324e6a" stroke-width="2" opacity="0.8"/></svg><div class="gallery-item-label">LDM · Sample 01</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030a12"/><ellipse cx="79" cy="82" rx="70" ry="65" fill="#0d1926" opacity="0.92"/><ellipse cx="79" cy="82" rx="56" ry="52" fill="#152332"/><ellipse cx="79" cy="82" rx="42" ry="38" fill="#1d303e"/><ellipse cx="79" cy="82" rx="30" ry="26" fill="#24415c"/><ellipse cx="81" cy="86" rx="19" ry="17" fill="#060e1a"/><ellipse cx="53" cy="64" rx="14" ry="17" fill="#060e1a"/><ellipse cx="79" cy="82" rx="30" ry="26" fill="none" stroke="#2e4c66" stroke-width="2" opacity="0.7"/></svg><div class="gallery-item-label">LDM · Sample 02</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#02080e"/><ellipse cx="81" cy="78" rx="71" ry="66" fill="#0e1b2a"/><ellipse cx="81" cy="78" rx="57" ry="53" fill="#162434"/><ellipse cx="81" cy="78" rx="43" ry="39" fill="#1d3142"/><ellipse cx="81" cy="78" rx="31" ry="27" fill="#254260"/><ellipse cx="83" cy="82" rx="19" ry="17" fill="#05101c"/><ellipse cx="57" cy="62" rx="14" ry="17" fill="#05101c"/><ellipse cx="81" cy="78" rx="31" ry="27" fill="none" stroke="#305068" stroke-width="1.8" opacity="0.75"/></svg><div class="gallery-item-label">LDM · Sample 03</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020912"/><ellipse cx="78" cy="81" rx="69" ry="64" fill="#0d1925"/><ellipse cx="78" cy="81" rx="55" ry="51" fill="#152230"/><ellipse cx="78" cy="81" rx="41" ry="37" fill="#1c2f3e"/><ellipse cx="78" cy="81" rx="29" ry="25" fill="#23405c"/><ellipse cx="80" cy="85" rx="18" ry="16" fill="#050e18"/><ellipse cx="54" cy="65" rx="14" ry="16" fill="#050e18"/><ellipse cx="78" cy="81" rx="29" ry="25" fill="none" stroke="#2d4e64" stroke-width="2" opacity="0.7"/></svg><div class="gallery-item-label">LDM · Sample 04</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030b14"/><ellipse cx="82" cy="79" rx="71" ry="66" fill="#0f1d2c"/><ellipse cx="82" cy="79" rx="57" ry="53" fill="#172636"/><ellipse cx="82" cy="79" rx="43" ry="39" fill="#1e3344"/><ellipse cx="82" cy="79" rx="31" ry="27" fill="#264460"/><ellipse cx="84" cy="83" rx="19" ry="17" fill="#06111a"/><ellipse cx="58" cy="63" rx="15" ry="18" fill="#06111a"/><ellipse cx="82" cy="79" rx="31" ry="27" fill="none" stroke="#325068" stroke-width="1.8" opacity="0.72"/></svg><div class="gallery-item-label">LDM · Sample 05</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020a14"/><ellipse cx="80" cy="80" rx="70" ry="65" fill="#0e1c28" opacity="0.93"/><ellipse cx="80" cy="80" rx="56" ry="52" fill="#162432"/><ellipse cx="80" cy="80" rx="42" ry="38" fill="#1d3040"/><ellipse cx="80" cy="80" rx="30" ry="26" fill="#25415e"/><ellipse cx="82" cy="84" rx="18" ry="16" fill="#060f1a"/><ellipse cx="56" cy="64" rx="14" ry="17" fill="#060f1a"/><ellipse cx="80" cy="80" rx="30" ry="26" fill="none" stroke="#2f4d66" stroke-width="1.8"/></svg><div class="gallery-item-label">LDM · Sample 06</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030912"/><ellipse cx="77" cy="83" rx="68" ry="63" fill="#0d1a26"/><ellipse cx="77" cy="83" rx="54" ry="50" fill="#142230"/><ellipse cx="77" cy="83" rx="40" ry="36" fill="#1b2f3e"/><ellipse cx="77" cy="83" rx="28" ry="24" fill="#223f5a"/><ellipse cx="79" cy="87" rx="17" ry="15" fill="#050d15"/><ellipse cx="53" cy="67" rx="13" ry="16" fill="#050d15"/><ellipse cx="77" cy="83" rx="28" ry="24" fill="none" stroke="#2d4c62" stroke-width="1.8" opacity="0.68"/></svg><div class="gallery-item-label">LDM · Sample 07</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="83" cy="77" rx="70" ry="65" fill="#0d1b29"/><ellipse cx="83" cy="77" rx="56" ry="52" fill="#152333"/><ellipse cx="83" cy="77" rx="42" ry="38" fill="#1c3142"/><ellipse cx="83" cy="77" rx="30" ry="26" fill="#24425e"/><ellipse cx="85" cy="81" rx="18" ry="16" fill="#060f1b"/><ellipse cx="59" cy="61" rx="14" ry="17" fill="#060f1b"/><ellipse cx="83" cy="77" rx="30" ry="26" fill="none" stroke="#2e4e66" stroke-width="1.8" opacity="0.7"/></svg><div class="gallery-item-label">LDM · Sample 08</div></div>
+      </div>
+      <div class="gallery-upload-note">
+        <strong>To add real images:</strong> replace each &lt;svg&gt; with
+        <code>&lt;img src="images/ldm/sample_01.png" alt="…"/&gt;</code>
+      </div>
+    </div>
+
+    <!-- ── FM panel ──────────────────────── -->
+    <div class="gallery-panel" id="gal-fm">
+      <div class="gallery-grid">
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020912"/><ellipse cx="80" cy="80" rx="69" ry="64" fill="#0c1926"/><ellipse cx="80" cy="80" rx="54" ry="50" fill="#142130"/><ellipse cx="80" cy="80" rx="40" ry="36" fill="#1c3040"/><ellipse cx="80" cy="80" rx="28" ry="24" fill="#264560"/><ellipse cx="82" cy="84" rx="16" ry="14" fill="#05101a"/><ellipse cx="56" cy="64" rx="12" ry="15" fill="#05101a"/><ellipse cx="80" cy="80" rx="28" ry="24" fill="none" stroke="#365f7a" stroke-width="1.2"/><ellipse cx="80" cy="80" rx="40" ry="36" fill="none" stroke="#24405a" stroke-width="0.6"/></svg><div class="gallery-item-label">FM · Sample 01</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030a14"/><ellipse cx="78" cy="82" rx="68" ry="63" fill="#0d1a24"/><ellipse cx="78" cy="82" rx="54" ry="50" fill="#152130"/><ellipse cx="78" cy="82" rx="40" ry="36" fill="#1c2f3e"/><ellipse cx="78" cy="82" rx="28" ry="24" fill="#24445c"/><ellipse cx="80" cy="86" rx="16" ry="14" fill="#04101a"/><ellipse cx="54" cy="66" rx="12" ry="15" fill="#04101a"/><ellipse cx="78" cy="82" rx="28" ry="24" fill="none" stroke="#325e78" stroke-width="1.2"/></svg><div class="gallery-item-label">FM · Sample 02</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#02080e"/><ellipse cx="82" cy="78" rx="70" ry="65" fill="#0e1b29"/><ellipse cx="82" cy="78" rx="56" ry="52" fill="#162333"/><ellipse cx="82" cy="78" rx="42" ry="38" fill="#1e3142"/><ellipse cx="82" cy="78" rx="30" ry="26" fill="#284762"/><ellipse cx="84" cy="82" rx="17" ry="15" fill="#05111c"/><ellipse cx="58" cy="62" rx="13" ry="16" fill="#05111c"/><ellipse cx="82" cy="78" rx="30" ry="26" fill="none" stroke="#38617c" stroke-width="1.3"/></svg><div class="gallery-item-label">FM · Sample 03</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="79" cy="81" rx="68" ry="63" fill="#0d1924"/><ellipse cx="79" cy="81" rx="54" ry="50" fill="#14202e"/><ellipse cx="79" cy="81" rx="40" ry="36" fill="#1c2e3c"/><ellipse cx="79" cy="81" rx="28" ry="24" fill="#26445e"/><ellipse cx="81" cy="85" rx="16" ry="14" fill="#050f18"/><ellipse cx="55" cy="65" rx="12" ry="15" fill="#050f18"/><ellipse cx="79" cy="81" rx="28" ry="24" fill="none" stroke="#345e76" stroke-width="1.2"/></svg><div class="gallery-item-label">FM · Sample 04</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030b14"/><ellipse cx="81" cy="79" rx="70" ry="65" fill="#0f1c2a"/><ellipse cx="81" cy="79" rx="56" ry="52" fill="#172432"/><ellipse cx="81" cy="79" rx="42" ry="38" fill="#1f3140"/><ellipse cx="81" cy="79" rx="30" ry="26" fill="#29465e"/><ellipse cx="83" cy="83" rx="17" ry="15" fill="#061218"/><ellipse cx="57" cy="63" rx="13" ry="16" fill="#061218"/><ellipse cx="81" cy="79" rx="30" ry="26" fill="none" stroke="#38607a" stroke-width="1.2"/></svg><div class="gallery-item-label">FM · Sample 05</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020a14"/><ellipse cx="80" cy="80" rx="69" ry="64" fill="#0e1b28"/><ellipse cx="80" cy="80" rx="55" ry="51" fill="#162330"/><ellipse cx="80" cy="80" rx="41" ry="37" fill="#1d2f3e"/><ellipse cx="80" cy="80" rx="29" ry="25" fill="#27455e"/><ellipse cx="82" cy="84" rx="16" ry="14" fill="#05101a"/><ellipse cx="56" cy="64" rx="12" ry="15" fill="#05101a"/><ellipse cx="80" cy="80" rx="29" ry="25" fill="none" stroke="#365f78" stroke-width="1.3"/></svg><div class="gallery-item-label">FM · Sample 06</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#030912"/><ellipse cx="77" cy="83" rx="67" ry="62" fill="#0d1924"/><ellipse cx="77" cy="83" rx="53" ry="49" fill="#14202c"/><ellipse cx="77" cy="83" rx="39" ry="35" fill="#1c2e3a"/><ellipse cx="77" cy="83" rx="27" ry="23" fill="#254358"/><ellipse cx="79" cy="87" rx="16" ry="14" fill="#040e18"/><ellipse cx="53" cy="67" rx="11" ry="14" fill="#040e18"/><ellipse cx="77" cy="83" rx="27" ry="23" fill="none" stroke="#325c74" stroke-width="1.1"/></svg><div class="gallery-item-label">FM · Sample 07</div></div>
+        <div class="gallery-item"><svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="160" fill="#020810"/><ellipse cx="83" cy="77" rx="70" ry="65" fill="#0e1c28"/><ellipse cx="83" cy="77" rx="56" ry="52" fill="#162332"/><ellipse cx="83" cy="77" rx="42" ry="38" fill="#1e3040"/><ellipse cx="83" cy="77" rx="30" ry="26" fill="#27465e"/><ellipse cx="85" cy="81" rx="17" ry="15" fill="#06101b"/><ellipse cx="59" cy="61" rx="13" ry="16" fill="#06101b"/><ellipse cx="83" cy="77" rx="30" ry="26" fill="none" stroke="#376078" stroke-width="1.2"/></svg><div class="gallery-item-label">FM · Sample 08</div></div>
+      </div>
+      <div class="gallery-upload-note">
+        <strong>To add real images:</strong> replace each &lt;svg&gt; with
+        <code>&lt;img src="images/fm/sample_01.png" alt="…"/&gt;</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODEL CARDS ═══════════════════════════════════════════════════════ -->
+<section id="models">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">04 — Architectures</div>
+      <h2 class="section-title">Generative Models Benchmarked</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="models-grid">
+
+      <div class="model-card featured reveal">
+        <div class="model-badge best">★ Best Overall</div>
+        <div class="model-name">DDPM</div>
+        <div class="model-fullname">Denoising Diffusion Probabilistic Model</div>
+        <p class="model-desc">Iterative denoising from Gaussian noise guided by learned score functions. Produces anatomically coherent, high-fidelity CMR images with strong segmentation utility under limited-data conditions.</p>
+        <div class="model-metrics">
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Fidelity</span><span class="metric-val">High</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar" style="width:88%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Utility</span><span class="metric-val">High</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar" style="width:90%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Privacy</span><span class="metric-val">Strong</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar" style="width:84%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card reveal">
+        <div class="model-badge good">Efficient</div>
+        <div class="model-name">LDM</div>
+        <div class="model-fullname">Latent Diffusion Model</div>
+        <p class="model-desc">Diffusion process operating in a compressed latent space via a pre-trained encoder-decoder, enabling computationally efficient synthesis with competitive image quality at reduced resource cost.</p>
+        <div class="model-metrics">
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Fidelity</span><span class="metric-val">Good</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar amber" style="width:78%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Utility</span><span class="metric-val">Good</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar amber" style="width:76%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Privacy</span><span class="metric-val">Moderate</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar amber" style="width:70%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card reveal">
+        <div class="model-badge novel">Novel Approach</div>
+        <div class="model-name">FM</div>
+        <div class="model-fullname">Flow Matching</div>
+        <p class="model-desc">Continuous normalizing flow trained with simulation-free objectives. Demonstrates strong privacy characteristics with promising generalization, slightly below DDPM in task utility.</p>
+        <div class="model-metrics">
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Fidelity</span><span class="metric-val">Good</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar purple" style="width:80%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Utility</span><span class="metric-val">Moderate</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar purple" style="width:72%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span class="metric-name">Privacy</span><span class="metric-val">Strong</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar purple" style="width:86%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">05 — Findings</div>
+      <h2 class="section-title">Results &amp; Comparative Analysis</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="results-table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>FID ↓</th>
+            <th>SSIM ↑</th>
+            <th>Dice Score ↑</th>
+            <th>Privacy Score ↑</th>
+            <th>Overall</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DDPM</td>
+            <td class="best-cell">12.4</td>
+            <td class="best-cell">0.847</td>
+            <td class="best-cell">0.883</td>
+            <td>0.791</td>
+            <td><span class="tag-cell tag-best">Best Balance</span></td>
+          </tr>
+          <tr>
+            <td>Latent Diffusion</td>
+            <td>18.9</td>
+            <td>0.812</td>
+            <td>0.851</td>
+            <td>0.724</td>
+            <td><span class="tag-cell tag-good">Efficient</span></td>
+          </tr>
+          <tr>
+            <td>Flow Matching</td>
+            <td>15.6</td>
+            <td>0.829</td>
+            <td>0.838</td>
+            <td class="best-cell">0.814</td>
+            <td><span class="tag-cell tag-novel">Best Privacy</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:0.75rem;font-family:var(--font-mono);">
+        * Indicative values. ↓ lower is better · ↑ higher is better
+      </p>
+    </div>
+    <div class="findings-grid">
+      <div class="finding-card reveal">
+        <div class="finding-num">FINDING 01</div>
+        <p class="finding-text"><strong>DDPM achieves the best overall balance</strong> between downstream segmentation utility, image fidelity, and privacy preservation under limited-data conditions.</p>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">FINDING 02</div>
+        <p class="finding-text"><strong>Flow Matching demonstrates superior privacy</strong> characteristics, making it well-suited for privacy-critical deployment despite slightly lower task-level performance.</p>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">FINDING 03</div>
+        <p class="finding-text"><strong>LDM offers computational efficiency</strong> with competitive results, representing a practical compromise between resource constraints and generation quality.</p>
+      </div>
+      <div class="finding-card reveal">
+        <div class="finding-num">FINDING 04</div>
+        <p class="finding-text">The two-stage conditioned pipeline <strong>successfully decouples structural anatomy</strong> from patient identity, enabling safe synthetic data augmentation in medical imaging workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM ═══════════════════════════════════════════════════════════════ -->
+<!--
+  HOW TO ADD TEAM PHOTOS:
+  1. Create a folder called "images/team/" next to index.html.
+  2. Place each person's photo inside, e.g. "kumarasinghe.jpg".
+  3. In the .team-photo-wrap below, set data-initials to the person's initials.
+  4. Change the <img> src to point to your photo file.
+  If a photo fails to load, the initials fallback avatar shows automatically.
+-->
+<section id="team">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">06 - People</div>
+      <h2 class="section-title">Team &amp; Supervisors</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <p class="team-group-label reveal">Team</p>
+    <div class="team-grid reveal">
+
+      <div class="team-card">
+        <div class="team-photo-wrap" data-initials="IT">
+          <img src="assets/images/team/ishan.jpg" alt="K.W.I.T. Kumarasinghe"/>
+        </div>
+        <div class="team-name">K.W.I.T. Kumarasinghe</div>
+        <div class="team-id">E/20/211</div>
+        <a class="team-email" href="mailto:e20211@eng.pdn.ac.lk">e20211@eng.pdn.ac.lk</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo-wrap" data-initials="AK">
+          <img src="assets/images/team/dasuni.jpg" alt="A.H.D. Kavya"/>
+        </div>
+        <div class="team-name">A.H.D. Kavya</div>
+        <div class="team-id">E/20/197</div>
+        <a class="team-email" href="mailto:e20197@eng.pdn.ac.lk">e20197@eng.pdn.ac.lk</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo-wrap" data-initials="DE">
+          <img src="assets/images/team/madhura.jpg" alt="D.M.B. Edirisooriya"/>
+        </div>
+        <div class="team-name">D.M.B. Edirisooriya</div>
+        <div class="team-id">E/20/093</div>
+        <a class="team-email" href="mailto:e20093@eng.pdn.ac.lk">e20093@eng.pdn.ac.lk</a>
+      </div>
+
+    </div>
+
+    <p class="team-group-label reveal" style="margin-top:2.5rem;">Supervisors</p>
+    <div class="team-grid supervisor-grid reveal">
+
+      <div class="team-card supervisor-card">
+        <div class="team-photo-wrap" data-initials="IN">
+          <img src="assets/images/team/isurunawinne.jpg" alt="Dr. Isuru Nawinne"/>
+        </div>
+        <div class="team-name">Dr. Isuru Nawinne</div>
+        <div class="team-role">Academic Supervisor</div>
+        <a class="team-email" href="mailto:isurunawinne@eng.pdn.ac.lk">isurunawinne@eng.pdn.ac.lk</a>
+      </div>
+
+      <div class="team-card supervisor-card">
+        <div class="team-photo-wrap" data-initials="RR">
+          <img src="assets/images/team/roshangragel.jpg" alt="Prof. Roshan G. Ragel"/>
+        </div>
+        <div class="team-name">Prof. Roshan G. Ragel</div>
+        <div class="team-role">Academic Supervisor</div>
+        <a class="team-email" href="mailto:roshanr@eng.pdn.ac.lk">roshanr@eng.pdn.ac.lk</a>
+      </div>
+
+      <div class="team-card supervisor-card">
+        <div class="team-photo-wrap" data-initials="VT">
+          <img src="assets/images/team/vajirat.jpg" alt="Dr. Vajira Thambawita"/>
+        </div>
+        <div class="team-name">Dr. Vajira Thambawita</div>
+        <div class="team-role">External Supervisor</div>
+        <a class="team-email" href="mailto:vajira@simula.no">vajira@simula.no</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">07 - Resources</div>
+      <h2 class="section-title">Useful Links</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="links-grid reveal">
+
+      <a class="link-card" href="https://github.com/cepdnaclk/e20-4yp-Synthetic-Cardiac-MRI-Image-Generation-using-Deep-Generative-Models" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </div>
+        <div class="link-body">
+          <div class="link-title">GitHub Repository</div>
+          <div class="link-desc">Source code, training scripts &amp; evaluation pipeline</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card" href="https://huggingface.co/spaces/ishanthathsara/SynCMRIApp" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="link-body">
+          <div class="link-title">HuggingFace Space</div>
+          <div class="link-desc">Live interactive demo and hosted model weights</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card" href="https://huggingface.co/datasets/SEARCH-IHI/DeepFakeCMRI" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="link-title">Generated CMRI Dataset</div>
+          <div class="link-desc">30,000 synthetic deep fake cardiac MRI images</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card" href="https://ce.pdn.ac.lk" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="link-body">
+          <div class="link-title">Department Website</div>
+          <div class="link-desc">Faculty of Engineering, University of Peradeniya</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card" href="https://doi.org/10.48550/arXiv.2603.04340" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="link-body">
+          <div class="link-title">Paper Preprint</div>
+          <div class="link-desc">Full research paper and methodology on arXiv</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    &copy; 2026
+    <span>Synthetic Cardiac MRI Generation · Final Year Project</span>
+    ·Department of Computer Engineering · University of Peradeniya
+  </div>
+</footer>
+
+<script src="assets/scripts/main.js"></script>
+</body>
+</html>
