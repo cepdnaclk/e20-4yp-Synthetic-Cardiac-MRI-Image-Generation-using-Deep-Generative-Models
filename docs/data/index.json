@@ -37,5 +37,7 @@
             "url": "#"
         }
     ],
-    "tags": ["Final Year Projects"]
+    "tags": ["Cardiac MRI", "Image Generation", "Final Year Projects"],
+    "image":"cover_page.png",
+    "thumbnail":"thumbnail.png"
 }
